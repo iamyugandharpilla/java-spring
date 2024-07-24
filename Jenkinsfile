@@ -32,8 +32,8 @@ pipeline {
             steps {
                 sh '''aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397709049.dkr.ecr.us-east-1.amazonaws.com
 
-                                         docker tag java-spring-19.1.${BUILD_NUMBER} 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1.${BUILD_NUMBER}
-                         docker push 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1.${BUILD_NUMBER}
+                                         docker tag java-spring-19.1:v${BUILD_NUMBER} 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1:v${BUILD_NUMBER}
+                         docker push 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1:v${BUILD_NUMBER}
 
         '''
             }
