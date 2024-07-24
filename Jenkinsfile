@@ -25,7 +25,7 @@ pipeline {
         }  
        stage('image push') {
             steps {
-               sh 'image push  yugandharpilla07/devopspractise-19:spring-19.1 '
+               sh 'docker push  yugandharpilla07/devopspractise-19:spring-19.1 '
             }
         }  
     }    
