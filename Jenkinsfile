@@ -34,6 +34,10 @@ pipeline {
 
                                          docker tag java-spring-19.1.${BUILD_NUMBER} 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1.${BUILD_NUMBER}
                          docker push 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1.${BUILD_NUMBER}
+
+        '''
+            }
+          } 
     }    
     post{
         always{
