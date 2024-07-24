@@ -23,12 +23,12 @@ pipeline {
                sh 'docker tag java-spring-19.1:v${BUILD_NUMBER} yugandharpilla07/devopspractise-19:spring-19.1.${BUILD_NUMBER} '
             }
         }  
-       stage('image push dockerhub'){
+       stage('image push dockerhub') {
             steps {
                sh 'docker push  yugandharpilla07/devopspractise-19:spring-19.1.${BUILD_NUMBER} '
             }
         }
-        stage('push ECR') {
+        stage('image push ECR') {
             steps {
                 sh '''aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397709049.dkr.ecr.us-east-1.amazonaws.com
 
