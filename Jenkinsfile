@@ -27,7 +27,13 @@ pipeline {
             steps {
                sh 'docker push  yugandharpilla07/devopspractise-19:spring-19.1 '
             }
-        }  
+        }
+        stage('push ECR'){
+            steps {
+                sh '''aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397709049.dkr.ecr.us-east-1.amazonaws.com
+
+                                         docker tag java-spring-19.1:latest 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1:latest
+                         docker push 767397709049.dkr.ecr.us-east-1.amazonaws.com/java-spring-19.1:latest  
     }    
     post{
         always{
