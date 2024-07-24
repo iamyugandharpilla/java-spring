@@ -2,10 +2,30 @@ pipeline {
    agent any
 
     stages {
-        stage ('build') {
+       
+        stage('maven build ') {
             steps {
-                sh '''cd $WORKSPACE
-                      docker build -t java-spring-19.1:v${BUILD_NUMBER} . '''
+               sh 'mvn clean package '
+            }
+        }
+        stage('docker image build ') {
+            steps {
+               sh 'docker build -t java-spring-19.1:v${BUILD_NUMBER} .'
+            }
+        }
+        stage('docker login') {
+            steps {
+               sh 'docker login'
+            }
+        }  
+        stage('docker tagging') {
+            steps {
+               sh 'docker tag java-spring-19.1:v${BUILD_NUMBER} yugandharpilla07/devopspractise-19:spring-19.1.${BUILD_NUMBER} '
+            }
+        }  
+       stage('image push dockerhub') {
+            steps {
+               sh 'docker push  yugandharpilla07/devopspractise-19:spring-19.1.${BUILD_NUMBER} '
             }
         }
         stage('image push ECR') {
@@ -19,7 +39,7 @@ pipeline {
             }
           }
 
-} 
+    }    
     post{
         always{
             emailext body: '''Hi,
